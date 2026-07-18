@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --ink-950: #090c10;
+  --ink-900: #0c1016;
+  --ink-800: #11161f;
+  --ink-700: #181f2b;
+  --ink-600: #232c3b;
+  --ink-500: #3a4457;
+  --paper-50: #f6f4ef;
+  --paper-100: #efeadf;
+  --line: rgba(230, 228, 219, 0.09);
+  --line-strong: rgba(230, 228, 219, 0.16);
+
+  --signal: #f0a93e;
+  --signal-dim: #a9773a;
+  --teal: #57d9c4;
+
+  --bg: var(--ink-950);
+  --surface: var(--ink-900);
+  --surface-raised: var(--ink-800);
+  --border: var(--line);
+  --text: #ece8dd;
+  --text-dim: #9aa1ad;
+  --text-faint: #626b7a;
+}
+
+html.light {
+  --bg: var(--paper-50);
+  --surface: var(--paper-100);
+  --surface-raised: #ffffff;
+  --border: rgba(20, 20, 15, 0.09);
+  --text: #14161a;
+  --text-dim: #55565c;
+  --text-faint: #8a8b8f;
+  --signal-dim: #b97a20;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-dim: var(--text-dim);
+  --color-text-faint: var(--text-faint);
+  --color-signal: var(--signal);
+  --color-signal-dim: var(--signal-dim);
+  --color-teal: var(--teal);
+  --font-display: "Segoe UI", "Avenir Next", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-body: -apple-system, "Segoe UI", Roboto, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, ui-monospace, monospace;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--ink-950);
+}
+
+/* Signature dot-grid: scattered "data points" with one signal reading picked out */
+.data-field {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, var(--line-strong) 1px, transparent 0);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black 40%, transparent 85%);
+}
+
+.mono-eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background-color 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--ink-600); border-radius: 8px; }
+html.light ::-webkit-scrollbar-thumb { background: #d8d2c2; }
